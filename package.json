@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "build": "wp --mode production",
     "run": "npx serve dist",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
