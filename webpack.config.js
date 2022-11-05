@@ -2,16 +2,17 @@ const { mode } = require ('webpack-nano/argv');
 const { merge } = require ('webpack-merge');
 const parts = require ('./webpack.parts');
 
-const commonConfig = merge([
+const commonConfig = merge ([
     { entry: ["./src"] },
     parts.page({ title: "Demo" }),
 ]);
 
-const productionConfig = merge([]);
+const productionConfig = merge ([]);
 
-const developmentConfig = merge([
+const developmentConfig = merge ([
     { entry: ['webpack-plugin-serve/client'] },
-    parts.devServer()
+    parts.devServer (),
+    parts.loadCSS ()
 ]);
 
 const getConfig = (mode) => {
@@ -26,24 +27,6 @@ const getConfig = (mode) => {
     }
 };
 
-//const { MiniHtmlWebpackPlugin } = require ("mini-html-webpack-plugin");
-//const { WebpackPluginServe } = require ("webpack-plugin-serve");
-
 module.exports = getConfig (mode);
-    /*{
-    watch: mode == 'development',
-    entry: ['./src', 'webpack-plugin-serve/client'],
-    mode,
-    plugins: [
-        new MiniHtmlWebpackPlugin({ context: { title: "Demo" } }),
-        new WebpackPluginServe ({
-            port: parseInt (process.env.PORT, 10) || 8080,
-            static: "./dist",
-            liveReload: true,
-            waitForBuild: true,
-        })
-    ],
-};
-     */
 
 // End of webpack.config.js
