@@ -47,4 +47,11 @@ exports.loadCSS = () => ({
     },
 });
 
+exports.tailwind = () => ({
+    loader: "postcss-loader",
+    options: {
+        postcssOptions: { plugins: [require ("tailwindcss")()] },
+    },
+});
+
 // End of webpack.parts.js
