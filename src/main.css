@@ -4,4 +4,11 @@
 /* Write your utility classes here */
 @tailwind utilities;
 
-body { background: cornsilk; }
+body {
+    background: cornsilk;
+    background-image: url("./images/logo.png");
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+/* End of main.css */
