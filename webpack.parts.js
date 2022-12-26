@@ -21,6 +21,13 @@ exports.devServer = () => ({
     ]
 });
 
+exports.autoprefix = () => ({
+    loader: "postcss-loader",
+    options: {
+        postcssOptions: { plugins: [require ("autoprefixer")()] },
+    },
+});
+
 exports.extractCSS = ({ options = {}, loaders = [] } = {}) => {
     return {
         module: {
