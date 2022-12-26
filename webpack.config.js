@@ -10,7 +10,7 @@ const commonConfig = merge ([
     parts.page({ title: "Demo" }),
 ]);
 
-const productionConfig = merge ([]);
+const productionConfig = merge ([parts.eliminateUnusedCSS ()]);
 
 const developmentConfig = merge ([
     { entry: ['webpack-plugin-serve/client'] },
