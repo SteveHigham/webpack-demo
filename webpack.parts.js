@@ -48,10 +48,6 @@ exports.extractCSS = ({ options = {}, loaders = [] } = {}) => {
     };
 };
 
-exports.page = ({ title }) => ({
-    plugins: [new MiniHtmlWebpackPlugin ({ context: { title } })]
-});
-
 exports.loadCSS = () => ({
     module: {
         rules: [
@@ -80,6 +76,22 @@ exports.eliminateUnusedCSS = () => ({
             ],
         }),
     ],
+});
+
+exports.loadImages = ({ limit } = {}) => ({
+    module: {
+        rules: [
+            {
+                test: /\.(png|jpg)$/,
+                type: "asset",
+                parser: { dataUrlCondition: { maxSize: limit } },
+            },
+        ],
+    },
+});
+
+exports.page = ({ title }) => ({
+    plugins: [new MiniHtmlWebpackPlugin ({ context: { title } })]
 });
 
 // End of webpack.parts.js
