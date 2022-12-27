@@ -29,6 +29,12 @@ exports.autoprefix = () => ({
     },
 });
 
+exports.clean = () => ({
+    output: {
+        clean: true,
+    },
+});
+
 exports.extractCSS = ({ options = {}, loaders = [] } = {}) => {
     return {
         module: {
