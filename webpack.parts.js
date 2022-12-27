@@ -104,4 +104,6 @@ exports.page = ({ title }) => ({
     plugins: [new MiniHtmlWebpackPlugin ({ context: { title } })]
 });
 
+exports.generateSourceMaps = ({ type }) => ({ devtool: type });
+
 // End of webpack.parts.js
