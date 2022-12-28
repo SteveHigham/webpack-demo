@@ -23,6 +23,7 @@
     "autoprefixer": "^10.4.13",
     "babel-loader": "^9.1.0",
     "css-loader": "^6.7.1",
+    "git-revision-webpack-plugin": "^5.0.0",
     "glob": "^8.0.3",
     "mini-css-extract-plugin": "^2.6.1",
     "mini-html-webpack-plugin": "^3.1.3",

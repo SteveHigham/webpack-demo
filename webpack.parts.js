@@ -1,11 +1,13 @@
-const path = require ("path");
 const glob = require ("glob");
+const path = require ("path");
+const webpack = require("webpack");
 
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const PurgeCSSPlugin = require ("purgecss-webpack-plugin");
 
-const { WebpackPluginServe } = require ('webpack-plugin-serve');
+const { GitRevisionPlugin } = require("git-revision-webpack-plugin");
 const { MiniHtmlWebpackPlugin } = require ('mini-html-webpack-plugin');
+const { WebpackPluginServe } = require ('webpack-plugin-serve');
 
 const ALL_FILES = glob.sync(path.join(__dirname, "src/*.js"));
 const APP_SOURCE = path.join(__dirname, "src");
@@ -20,6 +22,14 @@ exports.devServer = () => ({
             waitForBuild: true
         })
     ]
+});
+
+exports.attachRevision = () => ({
+    plugins: [
+        new webpack.BannerPlugin ({
+            banner: new GitRevisionPlugin ().version (),
+        }),
+    ],
 });
 
 exports.autoprefix = () => ({
