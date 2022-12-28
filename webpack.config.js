@@ -11,6 +11,7 @@ const commonConfig = merge ([
   parts.page ({title: "Demo"}),
   parts.loadImages ({limit: 15000}),
   parts.loadJavaScript (),
+  parts.setFreeVariable("HELLO", "hello from config"),
 ]);
 
 const productionConfig = merge ([
