@@ -34,6 +34,13 @@ const productionConfig = merge ([
           runtimeChunk: {name: "runtime"},
         }
   },
+  {
+    performance: {
+      hints: "warning", // "error" or false are valid too
+      maxEntrypointSize: 200000, // in bytes, default 250k
+      maxAssetSize: 200000, // in bytes
+    },
+  },
 ]);
 
 const developmentConfig = merge ([
