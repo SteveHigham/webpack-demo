@@ -27,7 +27,13 @@ const productionConfig = merge ([
   parts.eliminateUnusedCSS (),
   parts.generateSourceMaps ({type: "source-map"}),
   parts.attachRevision (),
-  {optimization: {splitChunks: {chunks: "all"}}},
+  {
+    optimization:
+        {
+          splitChunks: {chunks: "all"},
+          runtimeChunk: {name: "runtime"},
+        }
+  },
 ]);
 
 const developmentConfig = merge ([
