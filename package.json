@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "wp --mode production  --json > stats.json",
+    "build:multi": "wp --config webpack.multi.js",
     "run": "npx serve dist",
     "start": "wp --mode development",
     "test": "echo \"Error: no test specified\" && exit 1",

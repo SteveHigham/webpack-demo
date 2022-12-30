@@ -57,8 +57,15 @@ exports.clean = () => ({
 
 exports.generateSourceMaps = ({type}) => ({devtool: type});
 
-exports.page = ({title}) => ({
-  plugins: [new MiniHtmlWebpackPlugin ({context: {title}})]
+exports.page = ({title, url = "", chunks}) => ({
+  plugins: [
+    new MiniHtmlWebpackPlugin({
+      publicPath: "/",
+      chunks,
+      filename: `${url && url + "/"}index.html`,
+      context: {title},
+    })
+  ]
 });
 
 exports.setFreeVariable = (key, value) =>
