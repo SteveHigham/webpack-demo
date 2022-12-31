@@ -7,9 +7,10 @@ const MiniCssExtractPlugin  = require ("mini-css-extract-plugin");
 const PurgeCSSPlugin        = require ("purgecss-webpack-plugin");
 const TerserPlugin          = require ("terser-webpack-plugin");
 
-const {GitRevisionPlugin}     = require ("git-revision-webpack-plugin");
-const {MiniHtmlWebpackPlugin} = require ('mini-html-webpack-plugin');
-const {WebpackPluginServe}    = require ('webpack-plugin-serve');
+const {GitRevisionPlugin}         = require ("git-revision-webpack-plugin");
+const {MiniHtmlWebpackPlugin}     = require ('mini-html-webpack-plugin');
+const { ModuleFederationPlugin }  = require("webpack").container;
+const {WebpackPluginServe}        = require ('webpack-plugin-serve');
 
 const ALL_FILES   = glob.sync (path.join (__dirname, "src/*.js"));
 const APP_SOURCE  = path.join (__dirname, "src");
@@ -55,17 +56,35 @@ exports.clean = () => ({
   },
 });
 
+exports.federateModule = ({
+                            name,
+                            filename,
+                            exposes,
+                            remotes,
+                            shared,
+                          }) => ({
+  plugins: [
+    new ModuleFederationPlugin ({
+      name,
+      filename,
+      exposes,
+      remotes,
+      shared,
+    }),
+  ],
+});
+
 exports.generateSourceMaps = ({type}) => ({devtool: type});
 
-exports.page = ({title, url = "", chunks}) => ({
+exports.page = ({ path = "", template, title, chunks } = {}) => ({
   plugins: [
     new MiniHtmlWebpackPlugin({
-      publicPath: "/",
       chunks,
-      filename: `${url && url + "/"}index.html`,
-      context: {title},
-    })
-  ]
+      filename: `${path && path + "/"}index.html`,
+      context: { title },
+      template,
+    }),
+  ],
 });
 
 exports.setFreeVariable = (key, value) =>
