@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "wp --mode production  --json > stats.json",
+    "build:i18n": "wp --config webpack.i18n.js",
     "build:mf": "wp --config webpack.mf.js --mode production",
     "build:multi": "wp --config webpack.multi.js",
     "build:ssr": "wp --config webpack.ssr.js",
