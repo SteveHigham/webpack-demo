@@ -2,9 +2,18 @@ const {mode} = require ('webpack-nano/argv');
 const {merge} = require ('webpack-merge');
 
 const parts = require ('./webpack.parts');
+const path = require ("path");
 const cssLoaders = [parts.autoprefix (), parts.tailwind ()];
 
 const commonConfig = merge ([
+  {
+    resolveLoader: {
+      alias: {
+        "demo-loader":
+            path.resolve (__dirname, "loaders/demo-loader.js")
+      }
+    }
+  },
   parts.clean (),
   {entry: ["./src"]},
   parts.extractCSS ({loaders: cssLoaders}),

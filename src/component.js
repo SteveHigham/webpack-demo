@@ -1,3 +1,5 @@
+import "!demo-loader?name=foo!./main.css";
+
 export default (text = HELLO) => {
     const element = document.createElement("h1");
     const worker = new Worker (
